@@ -1,0 +1,25 @@
+{% extends 'webApp/base.html' %}
+
+{% block title %}
+Выставить на продажу
+{% endblock %}
+
+{% block content %}
+    <div class="container-input">
+        <h1 class="text-head">Публикация квартиры для продажи</h1>
+        <form id="form-add-apartment" method="post">
+            {% csrf_token %}
+            {{ form.fio }} <br>
+            {{ form.phone }} <br>
+            {{ form.id_district }} <br>
+            {{ form.number_floors }} <br>
+            {{ form.number_sell_floor }} <br>
+            {{ form.area }} <br>
+            {{ form.price }} <br>
+            <button type="submit" class="btn-publication">Опубликовать</button> <br>
+            <span>{{ error }}</span>
+        </form>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,37 @@
+#myCanvas {
+    background: linear-gradient(180deg, #a8d4ef 0%, #676767 100%);
+    border-radius: 5px;
+}
+.head-page-data {
+    display: grid;
+    gap: 20px 40px;
+    grid-template-columns: auto auto;
+    border: 2px solid rgba(0, 125, 215, 0.8);
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    align-items: center;
+	flex-direction: column;
+	text-align: center;
+	align-content: center;
+	position: absolute;
+	top: 45%;
+    left: 35%;
+	margin: -150px 0 0 -150px;
+    padding: 20px;
+}
+.head-text-data {
+    text-align: left;
+      text-shadow:
+    1px 1px 1px silver,
+    -1px 1px 1px silver;
+  color: black;
+  transition: all .5s;
+}
+
+legend {
+    background: linear-gradient(180deg, #cbe4f3 0%, #676767 100%);
+    align-content: center;
+    text-align: center;
+    border-radius: 5px;
+}

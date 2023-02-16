@@ -1,0 +1,116 @@
+body
+{
+  background-image: url("../src/fon.jpg");
+}
+.menu-main {
+  margin: 2px 0 2px;
+  padding: 5px 0 2px;
+  text-align: left;
+  background: linear-gradient(45deg, #b7d1ef, #1c4a8d);
+  border-radius: 3px;
+  position: sticky;
+  top: 0;
+}
+.menu-main li {display: inline-block;}
+.menu-main li:after {
+  content: "|";
+  color: #606060;
+  display: inline-block;
+  vertical-align:top;
+}
+.menu-main li:last-child:after {content: none;}
+.menu-main a {
+  text-decoration: none;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  letter-spacing: 2px;
+  position: relative;
+  padding-bottom: 15px;
+  margin: 0 14px 0 10px;
+  font-size: 17px;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: color .2s;
+}
+.menu-main b {
+  text-decoration: none;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  margin: 0 34px 0 15px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-shadow:
+    1px 1px 1px silver,
+    -1px 1px 1px silver;
+  color: grey;
+  transition: all .5s;
+}
+.head-img {width: 40px;}
+.menu-main a, .menu-main a:visited {color: #9d999d;}
+.menu-main a.current, .menu-main a:hover{color: #C5DDE8;}
+.menu-main a:before,
+.menu-main a:after {
+  content: "";
+  position: absolute;
+  height: 6px;
+  top: auto;
+  right: 50%;
+  bottom: -5px;
+  left: 50%;
+  background: #C5DDE8;
+  transition: .8s;
+}
+
+.menu-main a:hover:before, .menu-main .current:before {left: 0;}
+.menu-main a:hover:after, .menu-main .current:after {right: 0;}
+@media (max-width: 550px) {
+  .menu-main {padding-top: 0;}
+  .menu-main li {display: block;}
+  .menu-main li:after {content: none;}
+  .menu-main a {
+    padding: 25px 0 20px;
+    margin: 0 30px;
+  }
+}
+
+/* Страницы, для отображения информации порциями*/
+.count-container {
+  background: linear-gradient(45deg, #FFFFFF, #C5DDE8);
+  border-radius: 10px;
+  padding: 8px 8px;
+  opacity: 0.9;
+  margin-top: 20px;
+  margin-left: 36%;
+  margin-right: 36%;
+  height: auto;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  align-content: center;
+  position: center;
+}
+
+.page-num-selected{
+  display: inline-block;
+  background: #7aa7de;
+  color: #000;
+  text-align: center;
+  border-radius: 50%;
+  padding: 0.5em  0;
+  width:2em;
+  height:1em;
+}
+
+.page-num{
+  display: inline-block;
+  background: #ccc;
+  color: #000;
+  text-align: center;
+  border-radius: 50%;
+  padding: 0.5em  0;
+  width:2em;
+  height:1em;
+}
+
+/*.last-btn-aut{*/
+/*  float: right;*/
+/*}*/
+

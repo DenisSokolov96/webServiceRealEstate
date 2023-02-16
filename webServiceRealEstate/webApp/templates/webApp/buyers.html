@@ -1,0 +1,55 @@
+{% extends 'webApp/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    {% if page_obj %}
+        <div class="grid-container-buyers">
+            {% for el in page_obj %}
+                <div class="cards-buyers">
+                    <form id="form-buyers" method="post">
+                        {% csrf_token %}
+                        <table class="table-buyers" border="3">
+                          <caption>{{ el.fio }}</caption>
+                          <tr><td>Телефон</td><td>{{ el.phone }}</td></tr>
+                          <tr><td>Район</td><td>{{ el.id_district }}</td></tr>
+                          <tr><td>Площадь</td><td>{{ el.area }} м<sup>2</sup> </td></tr>
+                          <tr><td>Цена</td><td>{{ el.price }} млн.р.</td></tr>
+                        </table>
+                        <div class="btns">
+                            <button class="btn-get-doc" type="submit" >Отчет по квартирам</button>
+                            <button class="btn-del-redact" type="submit" >Редактировать</button>
+                            <button class="btn-del-data" type="submit" >Удалить</button>
+                        </div>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="count-container">
+                   {% for p in paginator.page_range %}
+                       {% if page_obj.number == p %}
+                            <span class="page-num-selected">{{ p }}</span>
+                                       {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+                            <span class="page-num">
+                                <a href="?page={{ p }}">{{ p }}</a>
+                            </span>
+                       {% endif %}
+                   {% endfor %}
+                   {% if page_obj.has_previous %}
+                    <span class="page-num">
+                             <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+                    </span>
+                  {% endif %}
+                  {% if page_obj.has_next %}
+                    <span class="page-num">
+                             <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                    </span>
+                  {% endif %}
+        </div>
+    {% else %}
+        <p> Записи отсутствуют! </p>
+    {% endif %}
+{% endblock %}
+

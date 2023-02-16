@@ -1,0 +1,37 @@
+.grid-container {
+  display: grid;
+  gap: 20px 40px;
+  grid-template-columns: auto auto auto;
+  background: linear-gradient(45deg, #FFFFFF, #C5DDE8);
+  border-radius: 10px;
+  padding: 8px;
+  opacity: 0.9;
+  margin-top: 50px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.cards {
+  border: 2px solid rgba(0, 125, 215, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(180deg, #cbe4f3 0%, #676767 100%);
+}
+
+.grid-item-fio{
+  font-size: 16px;
+  font-family: Verdana;
+  align-items: center;
+  font-weight: bolder;
+}
+.grid-item{
+  font-size: 16px;
+  font-family: Verdana;
+  font-weight: bolder;
+}
+
+.grid-item-data{
+  font-size: 16px;
+  font-family: fantasy;
+}

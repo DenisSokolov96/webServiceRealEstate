@@ -1,0 +1,24 @@
+{% extends 'webApp/base.html' %}
+
+{% block title %}
+Агентство недвижимости
+{% endblock %}
+
+{% block content %}
+    <div class="head-page-data">
+        <dev class="head-text-data">
+            <h1>Квартир в продаже: {{ num_apartments }}</h1>
+            <h1>Число покупателей: {{ num_buyers }}</h1>
+            <h1>Количество районов: {{ num_district }}</h1>
+        </dev>
+
+        <div>
+            <canvas id="myCanvas"></canvas>
+            <legend for="myCanvas"></legend>
+        </div>
+        <input hidden="hidden" id="myVar" name="area" value="{{ area }}">
+        <script type="text/javascript" src="../../static/js/script_index.js"></script>
+    </div>
+
+{% endblock %}
+
