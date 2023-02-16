@@ -1,0 +1,21 @@
+{% extends 'webApp/base.html' %}
+
+{% block title %}
+{{ buyer.fio }}
+{% endblock %}
+
+{% block content %}
+    <div class="details-buyer">
+        <h1>Удаление записи по поиску квартиры</h1>
+        <h2>ФИО: {{ buyer.fio }}</h2><br>
+        <p>Телефон: {{ buyer.phone }}</p><br>
+        <p>Площадь: {{ buyer.area }}</p><br>
+        <p>Цена: {{ buyer.price }}</p><br>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button class="btn-del-buyers" type="submit">Удалить</button>
+        </form>
+    </div>
+{% endblock %}
+

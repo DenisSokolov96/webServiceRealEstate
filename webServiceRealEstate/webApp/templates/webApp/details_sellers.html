@@ -1,0 +1,18 @@
+{% extends 'webApp/base.html' %}
+
+{% block title %}
+{{ sellers.fio }}
+{% endblock %}
+
+{% block content %}
+    <div class="details-seller">
+        <h1>ФИО {{ sellers.fio }}</h1>
+        <p>Телефон {{ sellers.phone }}</p>
+        <p>Район {{ sellers.id_district }}</p>
+        <p>Этажей в доме {{ sellers.number_floors  }}</p>
+        <p>№ этажа {{ sellers.number_sell_floor }}</p>
+        <p>Площадь {{ sellers.area }}  м<sup>2</sup></p>
+        <p>Цена {{ sellers.price }}  млн.р.</p>
+    </div>
+{% endblock %}
+

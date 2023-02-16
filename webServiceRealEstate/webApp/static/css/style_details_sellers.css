@@ -1,0 +1,32 @@
+.details-seller{
+    background: linear-gradient(180deg, #cbe4f3 0%, #676767 100%);
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    padding: 8px;
+    opacity: 0.9;
+    margin-top: 50px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.btn-del-seller{
+    border: 2px solid rgba(252, 4, 4, 0.8);
+    align-content: center;
+    align-items: center;
+    text-align: right;
+    background-color: whitesmoke;
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #3c64e5;
+}
+
+.btn-del-seller:hover{
+     background-color: red;
+}
+
+.btn-del-seller:active{
+     background-color: #4a91da;
+}

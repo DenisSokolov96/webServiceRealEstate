@@ -1,0 +1,24 @@
+{% extends 'webApp/base.html' %}
+
+{% block title %}
+{{ seller.fio }}
+{% endblock %}
+
+{% block content %}
+    <div class="details-seller">
+        <h1>Удаление объявления о продаже квартиры</h1>
+        <h1>ФИО {{ seller.fio }}</h1>
+        <p>Телефон {{ seller.phone }}</p>
+        <p>Район {{ seller.id_district }}</p>
+        <p>Этажей в доме {{ seller.number_floors  }}</p>
+        <p>№ этажа {{ seller.number_sell_floor }}</p>
+        <p>Площадь {{ seller.area }}  м<sup>2</sup></p>
+        <p>Цена {{ seller.price }}  млн.р.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button class="btn-del-seller" type="submit">Удалить</button>
+        </form>
+    </div>
+{% endblock %}
+

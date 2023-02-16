@@ -1,10 +1,52 @@
 from django.shortcuts import render, redirect
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView, DetailView, UpdateView
 
 from .models import Sellers, Buyers, Directory
-from .forms import SellersForm
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from .forms import SellersForm, BuyersForm
+from django.core.paginator import Paginator
 from django.shortcuts import render
+
+
+# классы добавления / вывода / удаления покупателей(заказчиков) квартир
+class BuyesDetail(DetailView):
+    model = Buyers
+    template_name = 'webApp/details_buyers.html'
+    context_object_name = 'buyer'
+
+
+class DelBuyer(DeleteView):
+    model = Buyers
+    success_url = '/buyers'
+    template_name = 'webApp/del_buyers.html'
+    context_object_name = 'buyer'
+
+
+class BuyersUpdateView(UpdateView):
+    model = Buyers
+    template_name = 'webApp/add_buyer.html'
+    success_url = '/buyers'
+    fields = ['fio', 'phone', 'id_district', 'area', 'price']
+
+
+# классы добавления / вывода / удаления продавцов
+class SellersDetail(DetailView):
+    model = Sellers
+    template_name = 'webApp/details_sellers.html'
+    context_object_name = 'sellers'
+
+
+class DelSeller(DeleteView):
+    model = Sellers
+    success_url = '/sellers'
+    template_name = 'webApp/del_sellers.html'
+    context_object_name = 'seller'
+
+
+class SellersUpdateView(UpdateView):
+    model = Sellers
+    template_name = 'webApp/add_apartment.html'
+    success_url = '/sellers'
+    fields = ['fio', 'phone', 'id_district', 'number_floors', 'number_sell_floor', 'area', 'price']
 
 
 def head(request):
@@ -68,3 +110,20 @@ def add_apartment(request):
     }
     return render(request, 'webApp/add_apartment.html', context)
 
+
+def add_buyer(request):
+    error = ''
+    if request.method == 'POST':
+        form = BuyersForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('buyers-page')
+        else:
+            error = 'Форма была неверной!'
+
+    form = BuyersForm()
+    context = {
+        'form': form,
+        'error': error
+    }
+    return render(request, 'webApp/add_buyer.html', context)

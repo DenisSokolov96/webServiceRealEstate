@@ -6,7 +6,7 @@
   border-radius: 10px;
   padding: 8px;
   opacity: 0.9;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -28,22 +28,42 @@
   font-weight: lighter;
   width: 100%;
 }
-.btn-get-doc, .btn-del-data, .btn-del-redact {
-    font-weight: lighter;
-    width: 150px;
-    height: 30px;
-    margin-top: 1%;
+
+.btns{
+   text-align: right;
+}
+.btn-red-data{
+    border: 2px solid rgba(243, 120, 46, 0.8);
+    align-content: center;
+    align-items: center;
+    text-align: right;
+    background-color: whitesmoke;
     border-radius: 20px 20px 20px 20px;
+    padding: 5px 10px;
+    text-decoration: none;
     color: #3c64e5;
 }
-
-.btn-get-doc:hover, .btn-del-data:hover, .btn-del-redact:hover {
-     box-shadow: inset 0 0 0 1px #EECFBA, 0 5px 20px #41d914;
+.btn-red-data:hover{
+    background: #e5883c;
 }
-.btn-get-doc:active, .btn-del-data:active, .btn-del-redact:active {
-     box-shadow: inset 0 0 0 1px #EECFBA, inset 0 5px 25px #3f9dc7;
-}
-.btns{
-      text-align: center;
+.btn-red-data:active{
+    background: #ded9d6;
 }
 
+.btn-add-buyer{
+    border: 2px solid rgba(243, 120, 46, 0.8);
+    align-content: center;
+    align-items: center;
+    text-align: right;
+    background-color: whitesmoke;
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #3c64e5;
+}
+.btn-add-buyer:hover{
+     background-color: #e5883c;
+}
+.btn-add-buyer:active{
+     background-color: #c4d0e1;
+}

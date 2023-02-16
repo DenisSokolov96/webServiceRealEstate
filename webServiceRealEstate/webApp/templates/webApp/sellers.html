@@ -5,8 +5,11 @@
 {% endblock %}
 
 {% block content %}
+        <div class="btn-cls">
+            <a href="{% url 'add-apartment-page' %}" class="btn-add-seller" >Выставить на продажу</a>
+        </div>
     {% if page_obj %}
-<div class="grid-container" xmlns="http://www.w3.org/1999/html">
+<div class="grid-container">
             {% for el in page_obj %}
                   <div class="cards">
                       <span class="grid-item-fio">{{ el.fio }}</span><br>
@@ -18,6 +21,11 @@
                           <tr><td class="grid-item">Площадь</td><td class="grid-item-data">{{ el.area }} м<sup>2</sup></td></tr>
                           <tr><td class="grid-item">Цена</td><td class="grid-item-data">{{ el.price }} млн.р.</td></tr>
                       </table>
+                       <div class="btns-sellers">
+                            <a href="{% url 'seller-detail' el.id %}" class="btn-sell" >Просмотр</a>
+                            <a href="{% url 'seller-update' el.id %}" class="btn-sell" >Редактирование</a>
+                            <a href="{% url 'del-seller' el.id %}" class="btn-sell" >Удалить</a>
+                        </div>
                   </div>
             {% endfor %}
 

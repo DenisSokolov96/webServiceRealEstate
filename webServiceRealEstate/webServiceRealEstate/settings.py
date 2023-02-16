@@ -20,12 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-lpn%l2((tp$_1(l7fe560rg3)gvse5-ia&mox10*gcz)v=9-#sk#cuo'
+SECRET_KEY = 'django-insecure2-lpn%l1((tp$_(l7fe560rg)gvse3-ia&mox15*gcz0)v=9-#sk#cuo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# для pythonanywhere
+#ALLOWED_HOSTS = ['DenisSokolov.pythonanywhere.com']
 
 
 # Application definition
@@ -117,10 +119,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+# для pythonanywhere
+# STATIC_URL = '/static/'
+# STATIC_ROOT = '/home/DenisSokolov/webServiceRealEstate/webServiceRealEstate/webApp/static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['https://300a-85-113-206-140.eu.ngrok.io','http://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://DenisSokolov.pythonanywhere.com','http://127.0.0.1']

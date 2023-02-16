@@ -6,7 +6,7 @@
   border-radius: 10px;
   padding: 8px;
   opacity: 0.9;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -34,4 +34,63 @@
 .grid-item-data{
   font-size: 16px;
   font-family: fantasy;
+}
+.btn-add-seller{
+    border: 2px solid rgba(243, 120, 46, 0.8);
+    align-content: center;
+    align-items: center;
+    text-align: right;
+    background-color: whitesmoke;
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #3c64e5;
+}
+
+
+.btn-add-seller{
+    border: 2px solid rgba(4, 140, 252, 0.8);
+    background-color: whitesmoke;
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #3c64e5;
+}
+
+.btn-add-seller:hover{
+     background-color: #7faaec;
+}
+
+.btn-add-seller:active{
+     background-color: #c4d0e1;
+}
+.btn-cls{
+    border-radius: 10px;
+    padding: 8px;
+    opacity: 0.9;
+    margin-top: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: right;
+}
+.btns-sellers{
+    text-align: right;
+    padding: 15px 0 0 0;
+}
+.btn-sell{
+    border: 2px solid rgba(4, 140, 252, 0.8);
+    align-content: center;
+    align-items: center;
+    text-align: right;
+    background-color: whitesmoke;
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #3c64e5;
+}
+.btn-sell:hover{
+     background-color: #7faaec;
+}
+.btn-sell:active{
+     background-color: #c4d0e1;
 }

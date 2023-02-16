@@ -15,6 +15,9 @@ class Sellers(models.Model):
         verbose_name = 'Продавец'
         verbose_name_plural = 'Продавецы'
 
+    def get_absolute_url(selfs):
+        return f'/sellers/{selfs.id}'
+
 
 class Buyers(models.Model):
     id = models.AutoField('id', primary_key=True)
@@ -27,6 +30,9 @@ class Buyers(models.Model):
     class Meta:
         verbose_name = 'Покупатель'
         verbose_name_plural = 'Покупатели'
+
+    def get_absolute_url(selfs):
+        return f'/buyers/{selfs.id}'
 
 
 class Directory(models.Model):

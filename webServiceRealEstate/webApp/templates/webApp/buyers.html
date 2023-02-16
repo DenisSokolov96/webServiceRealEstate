@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block content %}
+        <div class="btn-cls">
+            <a href="{% url 'add-buyer-page' %}" class="btn-add-buyer">Создать объявление о покупке</a>
+        </div>
     {% if page_obj %}
         <div class="grid-container-buyers">
             {% for el in page_obj %}
@@ -17,11 +20,11 @@
                           <tr><td>Район</td><td>{{ el.id_district }}</td></tr>
                           <tr><td>Площадь</td><td>{{ el.area }} м<sup>2</sup> </td></tr>
                           <tr><td>Цена</td><td>{{ el.price }} млн.р.</td></tr>
-                        </table>
+                        </table><br>
                         <div class="btns">
-                            <button class="btn-get-doc" type="submit" >Отчет по квартирам</button>
-                            <button class="btn-del-redact" type="submit" >Редактировать</button>
-                            <button class="btn-del-data" type="submit" >Удалить</button>
+                            <a href="{% url 'buyer-detail' el.id %}" class="btn-red-data" >Просмотр</a>
+                            <a href="{% url 'buyer-update' el.id %}" class="btn-red-data" >Редактирование</a>
+                            <a href="{% url 'del-buyer' el.id %}" class="btn-red-data" >Удалить</a>
                         </div>
                     </form>
                 </div>

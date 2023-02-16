@@ -1,0 +1,23 @@
+{% extends 'webApp/base.html' %}
+
+{% block title %}
+Покупка
+{% endblock %}
+
+{% block content %}
+    <div class="container-input">
+        <h1 class="text-head-buyer">Публикация объявления о покупке</h1>
+        <form id="form-add-buyer" method="post">
+            {% csrf_token %}
+            {{ form.fio }} <br>
+            {{ form.phone }} <br>
+            {{ form.id_district }} <br>
+            {{ form.area }} <br>
+            {{ form.price }} <br>
+            <button type="submit" class="btn-publication-buy">Опубликовать</button> <br>
+            <span>{{ error }}</span>
+        </form>
+    </div>
+
+{% endblock %}
+

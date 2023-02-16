@@ -1,6 +1,6 @@
-#form-add-apartment {
+#form-add-buyer {
     display: block;
-    border: 2px solid rgba(0, 125, 215, 0.8);
+    border: 2px solid rgba(218, 120, 50, 0.8);
     background: rgba(255,255,255,0.1);
     border-radius: 20px;
     backdrop-filter: blur(10px);
@@ -15,14 +15,11 @@
     padding: 20px;
 }
 
-
-.text-head{
+.text-head-buyer{
     color: whitesmoke;
     text-align: center;
 }
-
-
-.btn-publication {
+.btn-publication-buy {
 	 width: 200px;
 	 height: 50px;
 	 margin-top: 1%;
@@ -31,9 +28,9 @@
      color: #3c64e5;
 }
 
-.btn-publication:hover {
+.btn-publication-buy:hover {
      box-shadow: inset 0 0 0 1px #EECFBA, 0 5px 20px #b94c4c;
 }
-.btn-publication:active {
+.btn-publication-buy:active {
      box-shadow: inset 0 0 0 1px #EECFBA, inset 0 5px 25px #3f9dc7;
 }
