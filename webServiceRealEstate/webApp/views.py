@@ -225,4 +225,17 @@ def updateBuyers(request, pk):
     return render(request, 'webApp/add_buyer.html', {"form": form, "error": error})
 
 
+def createDocument(request, pk):
+    form_appartament = {
+        'district': str,
+        'fio_sell': str,
+        'phone_sell': str,
+        'fio_buyer': str,
+        'phone_buyer': str,
+        'profit_agents': int
+    }
+
+    return redirect('buyers-page')
+
+
 '''--------------------         END BUYERS          --------------------'''

@@ -30,7 +30,8 @@
                         <div class="btns">
                             <a href="{% url 'buyer-detail' el.id %}" class="btn-red-data" >Просмотр</a>
                             <a href="{% url 'buyer-update' el.id %}" class="btn-red-data" >Редактирование</a>
-                            <a href="{% url 'del-buyer' el.id %}" class="btn-red-data" >Удалить</a>
+                            <a href="{% url 'del-buyer' el.id %}" class="btn-red-data" >Удалить</a><br><br>
+                            <a href="{% url 'buyer-document' el.id %}" class="btn-red-data" >Получить отчет по существующим вариантам</a>
                         </div>
                     </form>
                 </div>

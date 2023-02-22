@@ -12,6 +12,7 @@ urlpatterns = [
     path('buyers/<int:pk>', views.buyesDetail, name='buyer-detail'),
     path('buyers/<int:pk>/update', views.updateBuyers, name='buyer-update'),
     path('buyers/<int:pk>/del_buyer', views.DelBuyer.as_view(), name='del-buyer'),
+    path('buyers/<int:pk>/document', views.createDocument, name='buyer-document'),
 
     path('sellers/<int:pk>', views.sellersDetail, name='seller-detail'),
     path('sellers/<int:pk>/update', views.updateSellers, name='seller-update'),
