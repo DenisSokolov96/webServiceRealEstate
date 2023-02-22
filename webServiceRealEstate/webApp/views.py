@@ -1,5 +1,12 @@
+import mimetypes
+import os
+from wsgiref.util import FileWrapper
+
+from django.http import StreamingHttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import DeleteView, DetailView, UpdateView
+from django.views.generic import DeleteView
+from docx import Document
+from docx.shared import Inches
 
 from .models import Sellers, Buyers, Directory
 from django.core.paginator import Paginator
@@ -226,16 +233,73 @@ def updateBuyers(request, pk):
 
 
 def createDocument(request, pk):
-    form_appartament = {
-        'district': str,
-        'fio_sell': str,
-        'phone_sell': str,
-        'fio_buyer': str,
-        'phone_buyer': str,
-        'profit_agents': int
-    }
+    buyers = Buyers.objects.get(id=pk)
+    strSql = "SELECT * " \
+             "FROM webApp_sellers as tblSell, webApp_buyers as tblBrs " \
+             "WHERE tblSell.id_district = tblBrs.id_district " \
+             "AND (tblSell.price * 1000000 + tblSell.price  * 1000000 * 0.03) <= tblBrs.price * 1000000 " \
+             "AND tblSell.area BETWEEN tblBrs.min_area AND tblBrs.max_area;"
+    sellersList = Sellers.objects.raw(strSql)
 
-    return redirect('buyers-page')
+    listForm = []
+    for seller in sellersList:
+        if buyers.spicial_condition is False:
+            if seller.number_sell_floor == 1 or seller.number_sell_floor == seller.number_floors:
+                continue
+
+        form_appartament = {
+            'district': Directory.objects.filter(id=buyers.id_district)[0].name_district,
+            'fio_sell': seller.fio,
+            'phone_sell': seller.phone,
+            'fio_buyer': buyers.fio,
+            'phone_buyer': buyers.phone,
+            'profit_agents': seller.price * 1000000 * 0.03
+        }
+        listForm.append(form_appartament)
+
+    listForm = sortListForm(listForm)
+
+    document = getDoc(listForm)
+    document.save('Возможные варианты купли продажи.docx')
+
+    response = StreamingHttpResponse(FileWrapper(open('Возможные варианты купли продажи.docx', 'rb'), 8192),
+                                     content_type=mimetypes.guess_type('Возможные варианты купли продажи.docx')[0])
+    response['Content-Length'] = os.path.getsize('Возможные варианты купли продажи.docx')
+    response['Content-Disposition'] = "attachment; filename=%s" % 'Возможные варианты купли продажи.docx'
+    return response
+
+    #return redirect('buyers-page')
+
+
+def getDoc(listForm):
+    document = Document()
+
+    for form in listForm:
+        document.add_heading('Район ' + form['district'], 0)
+
+        p = document.add_paragraph('ФИО продавца: ')
+        p.add_run(form['fio_sell']).bold = True
+        p = document.add_paragraph('Номер телефона: ')
+        p.add_run(form['phone_sell']).bold = True
+        p = document.add_paragraph('ФИО покупателя: ')
+        p.add_run(form['fio_buyer']).bold = True
+        p = document.add_paragraph('Номер телефона: ')
+        p.add_run(form['phone_buyer']).bold = True
+        p = document.add_paragraph('Прибыль агенства (3% от суммы сделки): ')
+        p.add_run(str(form['profit_agents']) + "руб.").bold = True
+    return document
+
+
+def sortListForm(listForm):
+    n = len(listForm)
+    for i in range(n):
+        for j in range(n-1):
+            if listForm[j]['profit_agents'] < listForm[j + 1]['profit_agents']:
+                temp = listForm[j]
+                listForm[j] = listForm[j + 1]
+                listForm[j + 1] = temp
+
+    return listForm
 
 
 '''--------------------         END BUYERS          --------------------'''
