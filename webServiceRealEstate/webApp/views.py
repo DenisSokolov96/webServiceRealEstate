@@ -4,6 +4,7 @@ from wsgiref.util import FileWrapper
 
 from django.http import StreamingHttpResponse
 from django.shortcuts import render, redirect
+from django.utils.encoding import iri_to_uri
 from django.views.generic import DeleteView
 from docx import Document
 from docx.shared import Inches
@@ -71,7 +72,8 @@ def add_apartment(request):
         if error == '':
             return redirect('sellers-page')
 
-    return render(request, 'webApp/add_apartment.html', {"error": error})
+    directorys = Directory.objects.all()
+    return render(request, 'webApp/add_apartment.html', {"error": error, "directorys": directorys})
 
 
 def updateSellers(request, pk):
@@ -83,6 +85,7 @@ def updateSellers(request, pk):
         if error == '':
             return redirect('sellers-page')
 
+    directorys = Directory.objects.all()
     form = {
         'fio': sellers.fio,
         'phone': sellers.phone,
@@ -92,7 +95,7 @@ def updateSellers(request, pk):
         'area': sellers.area,
         'price': sellers.price
     }
-    return render(request, 'webApp/add_apartment.html', {"form": form, "error": error})
+    return render(request, 'webApp/add_apartment.html', {"form": form, "error": error, "directorys": directorys})
 
 
 def saveDataSeller(request, sellers):
@@ -161,7 +164,8 @@ def add_buyer(request):
         if error == '':
             return redirect('buyers-page')
 
-    return render(request, 'webApp/add_buyer.html', {"error": error})
+    directorys = Directory.objects.all()
+    return render(request, 'webApp/add_buyer.html', {"error": error, "directorys": directorys})
 
 
 def saveDataBuyers(request, buyers):
@@ -220,6 +224,7 @@ def updateBuyers(request, pk):
         if error == '':
             return redirect('buyers-page')
 
+    directorys = Directory.objects.all()
     form = {
         'fio': buyers.fio,
         'phone': buyers.phone,
@@ -229,24 +234,24 @@ def updateBuyers(request, pk):
         'price': buyers.price,
         'spicial_condition': buyers.spicial_condition
     }
-    return render(request, 'webApp/add_buyer.html', {"form": form, "error": error})
+    return render(request, 'webApp/add_buyer.html', {"form": form, "error": error, "directorys":directorys})
 
 
 def createDocument(request, pk):
     buyers = Buyers.objects.get(id=pk)
-    strSql = "SELECT * " \
-             "FROM webApp_sellers as tblSell, webApp_buyers as tblBrs " \
-             "WHERE tblSell.id_district = tblBrs.id_district " \
-             "AND (tblSell.price * 1000000 + tblSell.price  * 1000000 * 0.03) <= tblBrs.price * 1000000 " \
-             "AND tblSell.area BETWEEN tblBrs.min_area AND tblBrs.max_area;"
-    sellersList = Sellers.objects.raw(strSql)
+    strSql = "SELECT tblSell.id, tblSell.fio, tblSell.phone, tblSell.number_floors, tblSell.number_sell_floor, tblSell.area, tblSell.price " \
+             "FROM webApp_sellers as tblSell " \
+             "WHERE (tblSell.id_district = %s) " \
+             "AND ((tblSell.price * 1000000 + tblSell.price  * 1000000 * 0.03) <= %s * 1000000) " \
+             "AND (tblSell.area BETWEEN %s AND %s);"
+
+    sellersList = Sellers.objects.raw(strSql, [buyers.id_district, buyers.price, buyers.min_area, buyers.max_area])
 
     listForm = []
     for seller in sellersList:
         if buyers.spicial_condition is False:
             if seller.number_sell_floor == 1 or seller.number_sell_floor == seller.number_floors:
                 continue
-
         form_appartament = {
             'district': Directory.objects.filter(id=buyers.id_district)[0].name_district,
             'fio_sell': seller.fio,
@@ -265,10 +270,8 @@ def createDocument(request, pk):
     response = StreamingHttpResponse(FileWrapper(open('Возможные варианты купли продажи.docx', 'rb'), 8192),
                                      content_type=mimetypes.guess_type('Возможные варианты купли продажи.docx')[0])
     response['Content-Length'] = os.path.getsize('Возможные варианты купли продажи.docx')
-    response['Content-Disposition'] = "attachment; filename=%s" % 'Возможные варианты купли продажи.docx'
+    response['Content-Disposition'] = "attachment; filename={}".format(iri_to_uri('Возможные варианты купли-продажи.docx'))
     return response
-
-    #return redirect('buyers-page')
 
 
 def getDoc(listForm):
@@ -303,3 +306,32 @@ def sortListForm(listForm):
 
 
 '''--------------------         END BUYERS          --------------------'''
+'''--------------------         BEGIN DIRECTORY          --------------------'''
+
+
+def get_directorys(request):
+    error = ""
+    if request.method == "POST":
+        directorys = Directory()
+        if request.POST.get("add-district") is not None:
+            directorys.name_district = request.POST.get("add-district")
+            directorys.save()
+            return redirect('directorys-page')
+        if request.POST.get("del-district") is not None:
+            Directory.objects.filter(id=request.POST.get("del-district")).delete()
+            return redirect('directorys-page')
+        if request.POST.get("old-name") is not None and request.POST.get("new-name") is not None:
+            try:
+                directorys = Directory.objects.filter(name_district=request.POST.get("old-name"))[0]
+                directorys.name_district = request.POST.get("new-name")
+                directorys.save()
+            except:
+                error = "Форма была не верной"
+            if error == "":
+                return redirect('directorys-page')
+
+    directorys = Directory.objects.all()
+    return render(request, 'webApp/directorys.html', {'title': 'Районы', 'directorys': directorys, 'error': error})
+
+
+'''--------------------         END DIRECTORY          --------------------'''

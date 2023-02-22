@@ -1,0 +1,37 @@
+{% extends 'webApp/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+        <div class="container-directory">
+             <table class="table-buyers" border="3">
+                  <caption>{{ title }}</caption>
+                  {% for el in directorys %}
+                        <tr><td>{{ el.id }}</td><td>{{ el.name_district }}</td></tr>
+                  {% endfor %}
+             </table><br>
+
+             <form id="form-add-directory" method="post">
+                {% csrf_token %}
+                <input type="text" name="add-district"/>
+                <input class="btn-publication" type="submit" value="Добавить" > <br>
+             </form>
+             <form id="form-del-directory" method="post">
+                {% csrf_token %}
+                <input type="number" name="del-district"/>
+                <input class="btn-publication" type="submit" value="Удалить" > <br>
+             </form>
+             <form id="form-red-directory" method="post">
+                {% csrf_token %}
+                 <label>Старое название</label><br>
+                 <input type="text" name="old-name"/><br>
+                 <label>Новое название</label><br>
+                 <input type="text" name="new-name"/><br>
+                 <input class="btn-publication" type="submit" value="Изменить" > <br>
+                 <label>{{ error }}</label>
+             </form>
+         </div>
+{% endblock %}
+

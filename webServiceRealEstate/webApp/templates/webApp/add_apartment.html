@@ -23,13 +23,17 @@
                     <input type="text" name="phone" placeholder="Телефон"/>
                 {% endif %}
             </p>
-            <p>
-                {% if form is not null %}
-                    <input type="text" name="district" value="{{ form.district }}" placeholder="Район"/>
-                {% else %}
-                    <input type="text" name="district" placeholder="Район"/>
-                {% endif %}
-            </p>
+            <label>Выберите район из списка:</label>
+            <p><select name="district" class="select-css-seller">
+                 {% if form is not null %}
+                     <option value="{{ form.district}}">{{ form.district}}</option>
+                 {% else %}
+                     <option>Выберите район</option>
+                 {% endif %}
+                 {% for el in directorys %}
+                     <option value="{{ el.name_district}}">{{ el.name_district}}</option>
+                 {% endfor %}
+            </select></p>
             <p>
                 {% if form is not null %}
                     <input type="number" name="number_floors" value="{{ form.number_floors }}" placeholder="Этажей в доме"/>
