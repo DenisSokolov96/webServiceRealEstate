@@ -1,5 +1,5 @@
 var myCanvas = document.getElementById("myCanvas");
-myCanvas.width = 300;
+myCanvas.width = 500;
 myCanvas.height = 300;
 
 var ctx = myCanvas.getContext("2d");
@@ -99,9 +99,9 @@ var Barchart = function(options){
         legend.append(ul);
         var i = 0
         for (categ in this.options.data){
-             var li;
-            if (i%2 !== 0) li = document.createElement("a");
-            else li = document.createElement("li");
+            var li = document.createElement("li");
+            // if (i%2 !== 0) li = document.createElement("a");
+            // else li = document.createElement("li");
             i++;
             li.style.listStyle = "none";
             li.style.borderLeft = "40px solid "+this.colors[barIndex%this.colors.length];

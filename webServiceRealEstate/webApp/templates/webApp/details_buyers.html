@@ -6,11 +6,17 @@
 
 {% block content %}
     <div class="details-buyer">
-        <h1>ФИО {{ buyer.fio }}</h1>
-        <p>Телефон {{ buyer.phone }}</p>
-        <p>Район {{ buyer.id_district }}</p>
-        <p>Площадь {{ buyer.area }} м<sup>2</sup></p>
-        <p>Цена {{ buyer.price }} млн.р.</p>
+        <h1>ФИО: {{ form.fio }}</h1>
+        <p>Телефон: {{ form.phone }}</p>
+        <p>Район: {{ form.district }}</p>
+        <p>Площадь от: {{ form.min_area }} м<sup>2</sup></p>
+        <p>Площадь до: {{ form.max_area }} м<sup>2</sup></p>
+        <p>Цена: {{ form.price }} млн.р.</p>
+         {% if form.spicial_condition %}
+            <p>Специальное условие: любой этаж</p>
+        {% else %}
+            <p>Специальное условие: первый и последний этаж не предлагать</p>
+        {% endif %}
     </div>
 {% endblock %}
 

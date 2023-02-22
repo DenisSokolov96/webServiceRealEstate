@@ -10,7 +10,7 @@
 	align-content: center;
 	position: absolute;
 	top: 350px;
-    left: 49%;
+    left: 44%;
 	margin: -150px 0 0 -150px;
     padding: 20px;
 }
@@ -19,18 +19,21 @@
     color: whitesmoke;
     text-align: center;
 }
-.btn-publication-buy {
-	 width: 200px;
-	 height: 50px;
-	 margin-top: 1%;
-	 border-radius: 20px 20px 20px 20px;
-	 font-weight:bold;
-     color: #3c64e5;
-}
 
-.btn-publication-buy:hover {
+.btn-publication-buy{
+    border: 2px solid rgba(243, 120, 46, 0.8);
+    align-content: center;
+    align-items: center;
+    text-align: right;
+    background-color: whitesmoke;
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #3c64e5;
+}
+.btn-publication-buy:hover{
      box-shadow: inset 0 0 0 1px #EECFBA, 0 5px 20px #b94c4c;
 }
-.btn-publication-buy:active {
-     box-shadow: inset 0 0 0 1px #EECFBA, inset 0 5px 25px #3f9dc7;
+.btn-publication-buy:active{
+     background-color: #e5883c;
 }

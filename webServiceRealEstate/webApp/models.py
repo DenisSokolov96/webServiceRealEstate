@@ -24,8 +24,10 @@ class Buyers(models.Model):
     fio = models.CharField('ФИО', max_length=50)
     phone = models.CharField('Номер телефона', max_length=12)
     id_district = models.IntegerField('Район')
-    area = models.FloatField('Площадь')
+    min_area = models.FloatField('Площадь')
+    max_area = models.FloatField('Площадь')
     price = models.FloatField('Цена')
+    spicial_condition = models.BooleanField('Специальное условие')
 
     class Meta:
         verbose_name = 'Покупатель'
@@ -42,4 +44,3 @@ class Directory(models.Model):
     class Meta:
         verbose_name = 'Район'
         verbose_name_plural = 'Районы'
-

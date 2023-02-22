@@ -9,8 +9,7 @@
         <h1>Удаление записи по поиску квартиры</h1>
         <h2>ФИО: {{ buyer.fio }}</h2><br>
         <p>Телефон: {{ buyer.phone }}</p><br>
-        <p>Площадь: {{ buyer.area }}</p><br>
-        <p>Цена: {{ buyer.price }}</p><br>
+        <p>Цена: {{ buyer.price }}  млн.р.</p><br>
 
         <form method="POST">
             {% csrf_token %}

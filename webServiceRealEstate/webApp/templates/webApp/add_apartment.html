@@ -9,16 +9,58 @@
         <h1 class="text-head">Публикация квартиры для продажи</h1>
         <form id="form-add-apartment" method="post">
             {% csrf_token %}
-            {{ form.fio }} <br>
-            {{ form.phone }} <br>
-            {{ form.id_district }} <br>
-            {{ form.number_floors }} <br>
-            {{ form.number_sell_floor }} <br>
-            {{ form.area }} <br>
-            {{ form.price }} <br>
-            <button type="submit" class="btn-publication">Опубликовать</button> <br>
+            <p>
+                {% if form is not null %}
+                    <input type="text" name="fio" value="{{ form.fio }}" placeholder="ФИО"/>
+                {% else %}
+                    <input type="text" name="fio" placeholder="ФИО"/>
+                {% endif %}
+            </p>
+            <p>
+                {% if form is not null %}
+                    <input type="text" name="phone" value="{{ form.phone }}" placeholder="Телефон"/>
+                {% else %}
+                    <input type="text" name="phone" placeholder="Телефон"/>
+                {% endif %}
+            </p>
+            <p>
+                {% if form is not null %}
+                    <input type="text" name="district" value="{{ form.district }}" placeholder="Район"/>
+                {% else %}
+                    <input type="text" name="district" placeholder="Район"/>
+                {% endif %}
+            </p>
+            <p>
+                {% if form is not null %}
+                    <input type="number" name="number_floors" value="{{ form.number_floors }}" placeholder="Этажей в доме"/>
+                {% else %}
+                    <input type="number" name="number_floors" placeholder="Этажей в доме"/>
+                {% endif %}
+            </p>
+            <p>
+                {% if form is not null %}
+                    <input type="number" name="number_sell_floor" value="{{ form.number_sell_floor }}" placeholder="№ этажа"/>
+                {% else %}
+                    <input type="number" name="number_sell_floor" placeholder="№ этажа"/>
+                {% endif %}
+            </p>
+            <p>
+                {% if form is not null %}
+                    <input type="number" name="area" step="0.01" value="{{ form.area }}" placeholder="Площадь"/>
+                {% else %}
+                    <input type="number" name="area" step="0.01" placeholder="Площадь"/>
+                {% endif %}
+            </p>
+            <p>
+                {% if form is not null %}
+                    <input type="number" name="price" step="0.01" value="{{ form.price }}" placeholder="Цена"/>
+                {% else %}
+                    <input type="number" name="price" step="0.01" placeholder="Цена"/>
+                {% endif %}
+            </p>
+            <input class="btn-publication" type="submit" value="Опубликовать" > <br>
             <span>{{ error }}</span>
-        </form>
+    </form>
     </div>
 
 {% endblock %}

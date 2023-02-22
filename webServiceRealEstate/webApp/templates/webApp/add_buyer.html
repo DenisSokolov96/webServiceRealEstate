@@ -8,13 +8,66 @@
     <div class="container-input">
         <h1 class="text-head-buyer">Публикация объявления о покупке</h1>
         <form id="form-add-buyer" method="post">
-            {% csrf_token %}
-            {{ form.fio }} <br>
-            {{ form.phone }} <br>
-            {{ form.id_district }} <br>
-            {{ form.area }} <br>
-            {{ form.price }} <br>
-            <button type="submit" class="btn-publication-buy">Опубликовать</button> <br>
+             {% csrf_token %}
+            <p>
+                {% if form is not null %}
+                    <input type="text" name="fio" value="{{ form.fio }}" placeholder="ФИО"/>
+                {% else %}
+                    <input type="text" name="fio" placeholder="ФИО"/>
+                {% endif %}
+            </p>
+            <p>
+                {% if form is not null %}
+                    <input type="text" name="phone" value="{{ form.phone }}" placeholder="Телефон"/>
+                {% else %}
+                    <input type="text" name="phone" placeholder="Телефон"/>
+                {% endif %}
+            </p>
+            <p>
+                {% if form is not null %}
+                    <input type="text" name="district" value="{{ form.district }}" placeholder="Район"/>
+                {% else %}
+                    <input type="text" name="district" placeholder="Район"/>
+                {% endif %}
+            </p>
+            <p>
+                {% if form is not null %}
+                    <input type="number" name="min_area" step="0.01" value="{{ form.min_area }}" placeholder="Площадь от ..."/>
+                {% else %}
+                    <input type="number" name="min_area" step="0.01" placeholder="Площадь от ..."/>
+                {% endif %}
+            </p>
+            <p>
+                {% if form is not null %}
+                    <input type="number" name="max_area" step="0.01" value="{{ form.max_area }}" placeholder="Площадь до ..."/>
+                {% else %}
+                    <input type="number" name="max_area" step="0.01" placeholder="Площадь до ..."/>
+                {% endif %}
+            </p>
+            <p>
+                {% if form is not null %}
+                    <input type="number" name="price" step="0.01" value="{{ form.price }}" placeholder="Цена"/>
+                {% else %}
+                    <input type="number" name="price" step="0.01" placeholder="Цена"/>
+                {% endif %}
+            </p>
+            <p>
+                <label>Специальное условие:</label>
+                <ul>
+                    <li>активировано - подобрать любой этаж</li>
+                    <li>не активировано - первый и последний этаж не предлагать</li>
+                </ul>
+                {% if form is not null %}
+                     {% if form.spicial_condition %}
+                        <input type="checkbox" name="spicial_condition" checked/>
+                     {% else %}
+                        <input type="checkbox" name="spicial_condition" />
+                     {% endif %}
+                {% else %}
+                    <input type="checkbox" name="spicial_condition" checked/>
+                {% endif %}
+            </p>
+            <input class="btn-publication-buy" type="submit" value="Опубликовать" > <br>
             <span>{{ error }}</span>
         </form>
     </div>

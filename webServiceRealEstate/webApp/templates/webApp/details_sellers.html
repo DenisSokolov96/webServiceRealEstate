@@ -6,13 +6,13 @@
 
 {% block content %}
     <div class="details-seller">
-        <h1>ФИО {{ sellers.fio }}</h1>
-        <p>Телефон {{ sellers.phone }}</p>
-        <p>Район {{ sellers.id_district }}</p>
-        <p>Этажей в доме {{ sellers.number_floors  }}</p>
-        <p>№ этажа {{ sellers.number_sell_floor }}</p>
-        <p>Площадь {{ sellers.area }}  м<sup>2</sup></p>
-        <p>Цена {{ sellers.price }}  млн.р.</p>
+        <h1>ФИО: {{ form.fio }}</h1>
+        <p>Телефон: {{ form.phone }}</p>
+        <p>Район: {{ form.district }}</p>
+        <p>Этажей в доме: {{ form.number_floors  }}</p>
+        <p>№ этажа: {{ form.number_sell_floor }}</p>
+        <p>Площадь: {{ form.area }}  м<sup>2</sup></p>
+        <p>Цена: {{ form.price }}  млн.р.</p>
     </div>
 {% endblock %}
 

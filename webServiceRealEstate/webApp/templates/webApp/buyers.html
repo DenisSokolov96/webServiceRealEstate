@@ -18,8 +18,14 @@
                           <caption>{{ el.fio }}</caption>
                           <tr><td>Телефон</td><td>{{ el.phone }}</td></tr>
                           <tr><td>Район</td><td>{{ el.id_district }}</td></tr>
-                          <tr><td>Площадь</td><td>{{ el.area }} м<sup>2</sup> </td></tr>
+                          <tr><td>Площадь от</td><td>{{ el.min_area }} м<sup>2</sup> </td></tr>
+                          <tr><td>Площадь до</td><td>{{ el.max_area }} м<sup>2</sup> </td></tr>
                           <tr><td>Цена</td><td>{{ el.price }} млн.р.</td></tr>
+                           {% if el.spicial_condition %}
+                                <tr><td>Специальное условие</td><td>Любой этаж</td></tr>
+                           {% else %}
+                                <tr><td>Специальное условие</td><td>Первый и последний этаж не предлагать</td></tr>
+                           {% endif %}
                         </table><br>
                         <div class="btns">
                             <a href="{% url 'buyer-detail' el.id %}" class="btn-red-data" >Просмотр</a>
